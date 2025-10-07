@@ -16,4 +16,5 @@ export default defineConfig({
       localsConvention: 'camelCase',
     },
   },
+  base: process.env.NODE_ENV === 'production' ? '/rime-style/' : '/',
 });
