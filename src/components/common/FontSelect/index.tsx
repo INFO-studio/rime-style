@@ -83,7 +83,7 @@ const FontSelect: FC<FontSelectProps> = ({
                   key={font}
                   value={font}
                   onSelect={handleValueChange}
-                  className={'flex items-center justify-between'}
+                  className={'cursor-pointer flex items-center justify-between'}
                 >
                   <div className={'whitespace-nowrap overflow-hidden'}>
                     {font}

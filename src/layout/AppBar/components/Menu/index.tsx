@@ -78,16 +78,17 @@ const Menu: FC = () => {
               .otherwise(() => (
                 <>
                   <DropdownMenuItem
-                    onClick={() => setClearFontDataDialogOpen(true)}
-                    className={'pl-6'}
-                  >
-                    {t('menu_clear_font_data')}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
                     onClick={() => setChangeFontDataDialogOpen(true)}
                     className={'pl-6'}
                   >
                     {t('menu_change_font_data')}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setClearFontDataDialogOpen(true)}
+                    variant={'destructive'}
+                    className={'pl-6'}
+                  >
+                    {t('menu_clear_font_data')}
                   </DropdownMenuItem>
                 </>
               ))}

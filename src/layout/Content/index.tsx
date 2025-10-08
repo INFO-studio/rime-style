@@ -14,7 +14,7 @@ const Content: FC = () => {
         <TabsTrigger value="weasel">{t('weasel')}</TabsTrigger>
         <TabsTrigger value="squirrel">{t('squirrel')}</TabsTrigger>
       </TabsList>
-      <TabsContent value="weasel">
+      <TabsContent value="weasel" className={'p-4'}>
         <Weasel />
       </TabsContent>
       <TabsContent value="squirrel">{t('coming_soon')}</TabsContent>

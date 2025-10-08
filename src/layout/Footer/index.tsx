@@ -5,7 +5,9 @@ const Footer: FC = () => {
   const { t } = useTranslation();
   return (
     <div className={'p-4 bg-[var(--accent)] sarasa'}>
-      <div className={'flex items-center justify-between'}>
+      <div
+        className={'flex flex-col items-center md:justify-between md:flex-row'}
+      >
         <div>
           {t('footer_note', {
             replace: {
@@ -24,7 +26,7 @@ const Footer: FC = () => {
                       href={'https://bennyyip.github.io/Rime-See-Me/'}
                       target={'_blank'}
                     >
-                      {'Rime西米'}
+                      {t('rime_seeme')}
                     </a>
                   ),
                 },
