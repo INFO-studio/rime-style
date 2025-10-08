@@ -7,6 +7,10 @@ import FontSelect from '@/components/common/FontSelect';
 import useStyleStore from '@/stores/styleStore.ts';
 import { AestheticFluidBg } from '@/components/common/Background/AestheticFluidBg';
 import Preview from '@/components/common/Preview';
+import ColorPicker from '@/components/common/ColorPicker';
+import rgba from '@/utils/rgba.ts';
+import hexa from '@/utils/hexa.ts';
+import toColor from '@/utils/toColor.ts';
 
 const Weasel: FC = () => {
   const { fontList } = useFontListStore();
@@ -67,14 +71,28 @@ const Weasel: FC = () => {
               onChange={e => setStyleColorSchemeValue('author', e.target.value)}
             />
           </div>
-        </div>
-        <div className={'flex items-center gap-8'}>
-          <div className={'w-8 h-8 shrink-0'} style={{ backgroundColor }}></div>
-          <Input
-            placeholder="BackgroundColor"
-            value={backgroundColor}
-            onChange={e => setBackgroundColor(e.target.value)}
-          />
+          <div className={'flex flex-col gap-1'}>
+            输入文字颜色
+            <div className={'flex items-center gap-4'}>
+              <div
+                className={
+                  'w-8 h-8 shrink-0 rounded-md border border-2 dark:border-input'
+                }
+                style={{ backgroundColor: rgba(style.colorScheme.textColor) }}
+              />
+              <Input
+                placeholder="BackgroundColor"
+                value={hexa(style.colorScheme.textColor)}
+                onChange={e => {
+                  const color = toColor(e.target.value);
+                  setStyleColorSchemeValue(
+                    'textColor',
+                    color.success ? color.value : style.colorScheme.textColor
+                  );
+                }}
+              />
+            </div>
+          </div>
         </div>
         <div className={'flex items-center gap-8'}>
           <div
@@ -89,6 +107,12 @@ const Weasel: FC = () => {
               <FontSelect value={font} onChange={setFont} />
             ))}
         </div>
+      </div>
+      <div className={'flex items-center justify-center'}>
+        <ColorPicker
+          color={style.colorScheme.textColor}
+          onChange={color => setStyleColorSchemeValue('textColor', color)}
+        />
       </div>
     </div>
   );

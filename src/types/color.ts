@@ -1,4 +1,4 @@
-type ColorPart =
+export type ColorPart =
   | 0
   | 1
   | 2
