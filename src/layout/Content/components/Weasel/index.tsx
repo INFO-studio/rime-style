@@ -15,7 +15,6 @@ import toColor from '@/utils/toColor.ts';
 const Weasel: FC = () => {
   const { fontList } = useFontListStore();
   const { style, setStyleColorSchemeValue } = useStyleStore();
-  const [backgroundColor, setBackgroundColor] = useState<string>('#aabbcc');
   const [font, setFont] = useState<string>('');
 
   useEffect(() => {
