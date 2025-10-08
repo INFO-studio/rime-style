@@ -9,11 +9,22 @@ import { AestheticFluidBg } from '@/components/common/Background/AestheticFluidB
 import Preview from '@/components/common/Preview';
 import ColorPicker from '@/components/common/ColorPicker';
 import rgba from '@/utils/rgba.ts';
+import {
+  MoveHorizontal as IconMoveHorizontal,
+  MoveVertical as IconMoveVertical,
+  SquircleDashed as IconSquircleDashed,
+} from 'lucide-react';
+import InputNumber from '@/components/common/InputNumber';
 
 const Weasel: FC = () => {
   const { fontList } = useFontListStore();
-  const { style, setStyleColorSchemeValue, styleTemp, onChangeColor } =
-    useStyleStore();
+  const {
+    style,
+    setStyleStyleLayoutValue,
+    setStyleColorSchemeValue,
+    styleTemp,
+    onChangeColor,
+  } = useStyleStore();
   const [font, setFont] = useState<string>('');
 
   useEffect(() => {
@@ -43,7 +54,7 @@ const Weasel: FC = () => {
       >
         <Preview rimeStyle={style} />
       </div>
-      <div className={'w-full h-full flex flex-col gap-4'}>
+      <div className={'w-full h-full flex flex-col gap-4 max-w-125'}>
         配色方案
         <div className={'flex flex-col gap-2'}>
           <div className={'flex flex-col gap-1'}>
@@ -176,13 +187,42 @@ const Weasel: FC = () => {
               />
             </div>
           </div>
+          <div className={'flex flex-col gap-1'}>
+            背景位移 & 背景扩散收缩
+            <div className={'flex items-center gap-4'}>
+              <InputNumber
+                value={style.style.layout.shadowOffsetX}
+                onChange={value =>
+                  setStyleStyleLayoutValue('shadowOffsetX', value)
+                }
+                icon={<IconMoveHorizontal />}
+                placeholder={'shadowOffsetX'}
+              />
+              <InputNumber
+                value={style.style.layout.shadowOffsetY}
+                onChange={value =>
+                  setStyleStyleLayoutValue('shadowOffsetY', value)
+                }
+                icon={<IconMoveVertical />}
+                placeholder={'shadowOffsetY'}
+              />
+              <InputNumber
+                value={style.style.layout.shadowRadius}
+                onChange={value =>
+                  setStyleStyleLayoutValue('shadowRadius', value)
+                }
+                icon={<IconSquircleDashed />}
+                placeholder={'shadowRadius'}
+              />
+            </div>
+          </div>
         </div>
         <div className={'flex items-center gap-8'}>
           <div
             className={'h-8 shrink-0 whitespace-nowrap'}
             style={{ fontFamily: font }}
           >
-            hello! my friend
+            hello! 字体测试!
           </div>
           {match(fontList)
             .with(null, () => <ImportFontList />)

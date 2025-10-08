@@ -18,8 +18,7 @@ const [useStyleStore] = createGlobalStore(() => {
   const getLocalStorageRimeStyle = () => {
     if (localStorageRimeStyleJson) {
       try {
-        const local = JSON.parse(localStorageRimeStyleJson);
-        return local;
+        return JSON.parse(localStorageRimeStyleJson);
       } catch {
         return defaultStyle;
       }

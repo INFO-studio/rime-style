@@ -32,6 +32,14 @@ const Preview: FC<PreviewProps> = ({ rimeStyle }) => {
           overflow: 'hidden',
           borderColor: rgba(rimeStyle.colorScheme.borderColor),
           backgroundColor: rgba(rimeStyle.colorScheme.backColor),
+          boxShadow: [
+            `${rimeStyle.style.layout.shadowOffsetX}px`,
+            `${rimeStyle.style.layout.shadowOffsetY}px`,
+            '0',
+            `${rimeStyle.style.layout.shadowRadius}px`,
+            `${rgba(rimeStyle.colorScheme.shadowColor)}`,
+          ].join(' '),
+          borderRadius: `${rimeStyle.style.layout.cornerRadius}px`,
         }}
       >
         <div
@@ -62,7 +70,7 @@ const Preview: FC<PreviewProps> = ({ rimeStyle }) => {
               color: rgba(rimeStyle.colorScheme.textColor),
             }}
           >
-            {'>'}
+            {'‸'}
           </div>
         </div>
         <div

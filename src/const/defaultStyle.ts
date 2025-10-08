@@ -49,9 +49,9 @@ const defaultStyle: RimeStyle = {
     },
   },
   colorScheme: {
-    code: 'example',
-    name: '名称',
-    author: '作者',
+    code: 'code',
+    name: 'name',
+    author: 'author',
     colorFormat: 'rgba',
     textColor: {
       R: 0,

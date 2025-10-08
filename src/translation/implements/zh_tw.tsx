@@ -1,7 +1,7 @@
 import type { Translation } from '@/translation/type.ts';
 
 const zh_tw: Translation = {
-  title: '中州韻 - 風格創建',
+  title: '中州韻 - 飾毫',
   theme_system: '系統',
   theme_light: '亮色',
   theme_dark: '暗色',
