@@ -9,24 +9,24 @@ import { AestheticFluidBg } from '@/components/common/Background/AestheticFluidB
 import Preview from '@/components/common/Preview';
 import ColorPicker from '@/components/common/ColorPicker';
 import rgba from '@/utils/rgba.ts';
-import hexa from '@/utils/hexa.ts';
-import toColor from '@/utils/toColor.ts';
 
 const Weasel: FC = () => {
   const { fontList } = useFontListStore();
-  const { style, setStyleColorSchemeValue } = useStyleStore();
+  const { style, setStyleColorSchemeValue, styleTemp, onChangeColor } =
+    useStyleStore();
   const [font, setFont] = useState<string>('');
 
   useEffect(() => {
     const background = new AestheticFluidBg({
       dom: 'background',
       colors: [
-        '#d4d4d4',
-        '#ffffff',
-        '#cfcfce',
-        '#e8e8e8',
-        '#ebebeb',
-        '#f0f0f0',
+        '#ee0000',
+        '#00ee00',
+        '#0000ee',
+        '#eeee00',
+        '#00eeee',
+        '#ee00ee',
+        '#eeeeee',
       ],
       loop: true,
     });
@@ -50,7 +50,7 @@ const Weasel: FC = () => {
             配色代码
             <Input
               placeholder="code"
-              value={style.colorScheme.code}
+              value={styleTemp.colorScheme.code}
               onChange={e => setStyleColorSchemeValue('code', e.target.value)}
             />
           </div>
@@ -58,7 +58,7 @@ const Weasel: FC = () => {
             配色名称
             <Input
               placeholder="code"
-              value={style.colorScheme.name}
+              value={styleTemp.colorScheme.name}
               onChange={e => setStyleColorSchemeValue('name', e.target.value)}
             />
           </div>
@@ -66,7 +66,7 @@ const Weasel: FC = () => {
             作者
             <Input
               placeholder="code"
-              value={style.colorScheme.author}
+              value={styleTemp.colorScheme.author}
               onChange={e => setStyleColorSchemeValue('author', e.target.value)}
             />
           </div>
@@ -80,15 +80,99 @@ const Weasel: FC = () => {
                 style={{ backgroundColor: rgba(style.colorScheme.textColor) }}
               />
               <Input
-                placeholder="BackgroundColor"
-                value={hexa(style.colorScheme.textColor)}
-                onChange={e => {
-                  const color = toColor(e.target.value);
-                  setStyleColorSchemeValue(
-                    'textColor',
-                    color.success ? color.value : style.colorScheme.textColor
-                  );
+                placeholder="textColor"
+                value={styleTemp.colorScheme.textColor}
+                onChange={e => onChangeColor('textColor', e.target.value)}
+              />
+            </div>
+          </div>
+          <div className={'flex flex-col gap-1'}>
+            标签颜色
+            <div className={'flex items-center gap-4'}>
+              <div
+                className={
+                  'w-8 h-8 shrink-0 rounded-md border border-2 dark:border-input'
+                }
+                style={{ backgroundColor: rgba(style.colorScheme.labelColor) }}
+              />
+              <Input
+                placeholder="labelColor"
+                value={styleTemp.colorScheme.labelColor}
+                onChange={e => onChangeColor('labelColor', e.target.value)}
+              />
+            </div>
+          </div>
+          <div className={'flex flex-col gap-1'}>
+            注释颜色
+            <div className={'flex items-center gap-4'}>
+              <div
+                className={
+                  'w-8 h-8 shrink-0 rounded-md border border-2 dark:border-input'
+                }
+                style={{
+                  backgroundColor: rgba(style.colorScheme.commentTextColor),
                 }}
+              />
+              <Input
+                placeholder="commentTextColor"
+                value={styleTemp.colorScheme.commentTextColor}
+                onChange={e =>
+                  onChangeColor('commentTextColor', e.target.value)
+                }
+              />
+            </div>
+          </div>
+          <div className={'flex flex-col gap-1'}>
+            边框颜色
+            <div className={'flex items-center gap-4'}>
+              <div
+                className={
+                  'w-8 h-8 shrink-0 rounded-md border border-2 dark:border-input'
+                }
+                style={{
+                  backgroundColor: rgba(style.colorScheme.borderColor),
+                }}
+              />
+              <Input
+                placeholder="textColor"
+                value={styleTemp.colorScheme.borderColor}
+                onChange={e => onChangeColor('borderColor', e.target.value)}
+              />
+            </div>
+          </div>
+          <div className={'flex flex-col gap-1'}>
+            阴影颜色
+            <div className={'flex items-center gap-4'}>
+              <div
+                className={
+                  'w-8 h-8 shrink-0 rounded-md border border-2 dark:border-input'
+                }
+                style={{
+                  backgroundColor: rgba(style.colorScheme.shadowColor),
+                }}
+              />
+              <Input
+                placeholder="shadowColor"
+                value={styleTemp.colorScheme.shadowColor}
+                onChange={e => onChangeColor('shadowColor', e.target.value)}
+              />
+            </div>
+          </div>
+          <div className={'flex flex-col gap-1'}>
+            背景颜色
+            <div className={'flex items-center gap-4'}>
+              <div
+                className={
+                  'w-8 h-8 shrink-0 rounded-md border border-2 dark:border-input'
+                }
+                style={{
+                  backgroundColor: rgba(style.colorScheme.backColor),
+                }}
+              />
+              <Input
+                placeholder="backColor"
+                value={styleTemp.colorScheme.backColor}
+                onChange={e => onChangeColor('backColor', e.target.value)}
               />
             </div>
           </div>
@@ -110,7 +194,7 @@ const Weasel: FC = () => {
       <div className={'flex items-center justify-center'}>
         <ColorPicker
           color={style.colorScheme.textColor}
-          onChange={color => setStyleColorSchemeValue('textColor', color)}
+          onChange={color => onChangeColor('textColor', color)}
         />
       </div>
     </div>

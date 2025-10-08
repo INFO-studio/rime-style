@@ -2,10 +2,11 @@ import type { FC } from 'react';
 import { ChromePicker } from 'react-color';
 import type { Color } from '@/types/color.ts';
 import toColorPart from '@/utils/toColorPart.ts';
+import hexa from '@/utils/hexa.ts';
 
 export type ColorPickerProps = {
   color: Color;
-  onChange: (color: Color) => void;
+  onChange: (color: string) => void;
 };
 
 const ColorPicker: FC<ColorPickerProps> = ({ color, onChange }) => {
@@ -20,12 +21,14 @@ const ColorPicker: FC<ColorPickerProps> = ({ color, onChange }) => {
     const g = toColorPart(color.g);
     const b = toColorPart(color.b);
     const a = toColorPart((color.a ?? 0) * 255);
-    onChange({
-      R: r,
-      G: g,
-      B: b,
-      A: a,
-    });
+    onChange(
+      hexa({
+        R: r,
+        G: g,
+        B: b,
+        A: a,
+      })
+    );
   };
   return (
     <ChromePicker color={pickerColor} onChange={e => handleChange(e.rgb)} />

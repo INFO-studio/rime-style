@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import type { RimeStyle } from '@/types/rimeStyle.ts';
 import rgba from '@/utils/rgba.ts';
+import { match } from 'ts-pattern';
 
 export type PreviewProps = {
   rimeStyle: RimeStyle;
@@ -11,12 +12,24 @@ const Preview: FC<PreviewProps> = ({ rimeStyle }) => {
     <div className={'z-1'}>
       <div
         style={{
-          borderWidth: `2.5px`,
-          paddingTop: `10px`,
-          paddingBottom: `10px`,
-          paddingLeft: `10px`,
-          paddingRight: `10px`,
-          width: `160px`,
+          borderWidth: `${rimeStyle.style.layout.borderWidth}px`,
+          paddingTop: `${rimeStyle.style.layout.marginY}px`,
+          paddingBottom: `${rimeStyle.style.layout.marginY}px`,
+          paddingLeft: `${rimeStyle.style.layout.marginX}px`,
+          paddingRight: `${rimeStyle.style.layout.marginX}px`,
+          maxWidth: match(rimeStyle.style.layout.maxWidth)
+            .with(0, () => 'unset')
+            .otherwise(maxWidth => `${maxWidth}px`),
+          minWidth: match(rimeStyle.style.layout.minWidth)
+            .with(0, () => 'unset')
+            .otherwise(minWidth => `${minWidth}px`),
+          maxHeight: match(rimeStyle.style.layout.maxHeight)
+            .with(0, () => 'unset')
+            .otherwise(maxWidth => `${maxWidth}px`),
+          minHeight: match(rimeStyle.style.layout.minHeight)
+            .with(0, () => 'unset')
+            .otherwise(minHeight => `${minHeight}px`),
+          overflow: 'hidden',
           borderColor: rgba(rimeStyle.colorScheme.borderColor),
           backgroundColor: rgba(rimeStyle.colorScheme.backColor),
         }}
@@ -64,7 +77,7 @@ const Preview: FC<PreviewProps> = ({ rimeStyle }) => {
             backgroundColor: rgba(
               rimeStyle.colorScheme.hilitedCandidateBackColor
             ),
-            color: rgba(rimeStyle.colorScheme.hilitedCandidateColor),
+            color: rgba(rimeStyle.colorScheme.hilitedCandidateTextColor),
           }}
         >
           1. 配色(pei se)
