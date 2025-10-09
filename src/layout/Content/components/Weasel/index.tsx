@@ -15,6 +15,7 @@ import {
   SquircleDashed as IconSquircleDashed,
 } from 'lucide-react';
 import InputNumber from '@/components/common/InputNumber';
+import ColorChecker from '@/components/common/ColorChecker';
 
 const Weasel: FC = () => {
   const { fontList } = useFontListStore();
@@ -116,14 +117,7 @@ const Weasel: FC = () => {
           <div className={'flex flex-col gap-1'}>
             注释颜色
             <div className={'flex items-center gap-4'}>
-              <div
-                className={
-                  'w-8 h-8 shrink-0 rounded-md border border-2 dark:border-input'
-                }
-                style={{
-                  backgroundColor: rgba(style.colorScheme.commentTextColor),
-                }}
-              />
+              <ColorChecker color={style.colorScheme.commentTextColor} />
               <Input
                 placeholder="commentTextColor"
                 value={styleTemp.colorScheme.commentTextColor}
@@ -136,16 +130,9 @@ const Weasel: FC = () => {
           <div className={'flex flex-col gap-1'}>
             边框颜色
             <div className={'flex items-center gap-4'}>
-              <div
-                className={
-                  'w-8 h-8 shrink-0 rounded-md border border-2 dark:border-input'
-                }
-                style={{
-                  backgroundColor: rgba(style.colorScheme.borderColor),
-                }}
-              />
+              <ColorChecker color={style.colorScheme.borderColor} />
               <Input
-                placeholder="textColor"
+                placeholder="borderColor"
                 value={styleTemp.colorScheme.borderColor}
                 onChange={e => onChangeColor('borderColor', e.target.value)}
               />
@@ -154,14 +141,7 @@ const Weasel: FC = () => {
           <div className={'flex flex-col gap-1'}>
             阴影颜色
             <div className={'flex items-center gap-4'}>
-              <div
-                className={
-                  'w-8 h-8 shrink-0 rounded-md border border-2 dark:border-input'
-                }
-                style={{
-                  backgroundColor: rgba(style.colorScheme.shadowColor),
-                }}
-              />
+              <ColorChecker color={style.colorScheme.shadowColor} />
               <Input
                 placeholder="shadowColor"
                 value={styleTemp.colorScheme.shadowColor}
@@ -172,14 +152,7 @@ const Weasel: FC = () => {
           <div className={'flex flex-col gap-1'}>
             背景颜色
             <div className={'flex items-center gap-4'}>
-              <div
-                className={
-                  'w-8 h-8 shrink-0 rounded-md border border-2 dark:border-input'
-                }
-                style={{
-                  backgroundColor: rgba(style.colorScheme.backColor),
-                }}
-              />
+              <ColorChecker color={style.colorScheme.backColor} />
               <Input
                 placeholder="backColor"
                 value={styleTemp.colorScheme.backColor}
